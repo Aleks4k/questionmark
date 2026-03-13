@@ -1,0 +1,6 @@
+@questionmark.Api_HostAddress = http://localhost:5222
+
+GET {{questionmark.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

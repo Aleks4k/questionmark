@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace questionmark.Domain.Entities
+{
+    public class Session
+    {
+        public ulong ID { get; set; }
+        public byte[] hash { get; set; } = new byte[0];
+        public byte[] nonce { get; set; } = new byte[0];
+        public byte[] tag { get; set; } = new byte[0];
+        public DateTime end { get; set; }
+    }
+}
