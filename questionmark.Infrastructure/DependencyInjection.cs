@@ -67,14 +67,14 @@ namespace questionmark.Infrastructure
             services.AddScoped<IUser, UserRepository>();
             var hashSettings = new HashSettings()
             {
-                authHashKey = Environment.GetEnvironmentVariable("HASH_AuthSalt")!,
-                cipherHashKey = Environment.GetEnvironmentVariable("HASH_CipherSalt")!
+                authHashKey = Environment.GetEnvironmentVariable("HASH_AuthSalt")!, //192
+                cipherHashKey = Environment.GetEnvironmentVariable("HASH_CipherSalt")! //192
             };
             services.AddSingleton(hashSettings);
             services.AddScoped<IHashService, HashService>();
             var encryptionSettings = new EncryptionSettings()
             {
-                AESKey_user = Environment.GetEnvironmentVariable("AES_SessionKey")!
+                AESKey_user = Environment.GetEnvironmentVariable("AES_SessionKey")! //32 hex
             };
             services.AddSingleton(encryptionSettings);
             services.AddScoped<IEncryptionService, EncryptionService>();
