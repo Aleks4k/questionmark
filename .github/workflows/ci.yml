@@ -1,22 +1,48 @@
 name: CI
 on:
-    push:
-        branches: ["master"]
-    pull_request:
-        branches: ["master"]
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
 jobs:
-    build-test:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
-          - name: Setup .NET 8
-            uses: actions/setup-dotnet@v4
-            with:
-              dotnet-version: '8.0.x'
-          - name: Restore dependencies
-            run: dotnet restore
-          - name: Build
-            run: dotnet build --configuration Release --no-restore
-          - name: Run tests
-            run: dotnet test --configuration Release --no-build --verbosity normal
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Run tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+  build-and-push-docker:
+    name: Docker Build & Push
+    needs: build-test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push backend Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          file: ./backend/Dockerfile
+          push: true
+          tags: |
+            aleks4k/questionmark:latest
+            aleks4k/questionmark:sha-${{ github.sha }}
