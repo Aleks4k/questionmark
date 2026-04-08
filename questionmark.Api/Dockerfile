@@ -8,6 +8,7 @@ COPY questionmark.Api/questionmark.Api.csproj questionmark.Api/
 COPY questionmark.Application/questionmark.Application.csproj questionmark.Application/
 COPY questionmark.Domain/questionmark.Domain.csproj questionmark.Domain/
 COPY questionmark.Infrastructure/questionmark.Infrastructure.csproj questionmark.Infrastructure/
+COPY questionmark.Tests/questionmark.Tests.csproj questionmark.Tests/
 
 RUN dotnet restore
 
