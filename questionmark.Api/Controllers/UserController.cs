@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using questionmark.Application.Users.Commands;
 using questionmark.Application.Users.Queries;
 
-
 namespace questionmark.Api.Controllers
 {
     public class UserController : BaseController
