@@ -41,8 +41,8 @@ jobs:
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./backend
-          file: ./backend/Dockerfile
+          context: .
+          file: ./questionmark.Api/Dockerfile
           push: true
           tags: |
             aleks4k/questionmark:latest
