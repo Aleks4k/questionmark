@@ -9,7 +9,7 @@ public class CreatePostDtoValidatorTests
 {
     private readonly CreatePostDtoValidator createPostValidator = new();
     [Theory]
-    [InlineData(14)]
+    [InlineData(15)]
     [InlineData(256)]
     [InlineData(512)]
     public async Task Validate_ValidText_ShouldHaveNoErrors(int length)
