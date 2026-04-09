@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using questionmark.Api.Filters;
 using questionmark.Application;
+using questionmark.Domain.Data;
 using questionmark.Infrastructure;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 //dotnet run --project questionmark.Api
@@ -24,6 +26,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
 }
 //app.UseHttpsRedirection();
 app.UseAuthentication();
