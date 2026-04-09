@@ -70,6 +70,10 @@ This project demonstrates:
    Create a `.env` file in the `questionmark.Api` directory with the following configuration:
    ```env
    MYSQL_CONNECTION=server=localhost;user=root;password=yourpassword;database=questionmark
+   MYSQL_DATABASE=questionmark
+   MYSQL_USER=questionmark
+   MYSQL_PASSWORD=your_password
+   MYSQL_ROOT_PASSWORD=your_root_password
    JWT_AccessTokenKey=your-access-token-key-uuid-format
    JWT_RefreshTokenKey=your-refresh-token-key-uuid-format
    JWT_Issuer=questionmark
@@ -83,6 +87,10 @@ This project demonstrates:
 
    **Configuration Details**:
    - `MYSQL_CONNECTION`: MySQL database connection string
+   - `MYSQL_DATABASE`: Database name (used by Docker during initialization)
+   - `MYSQL_USER`: MySQL user (used by Docker during initialization)
+   - `MYSQL_PASSWORD`: MySQL password (used by Docker during initialization)
+   - `MYSQL_ROOT_PASSWORD`: MySQL root password (required for Docker MySQL image)
    - `JWT_AccessTokenKey`: UUID format key for access token signing
    - `JWT_RefreshTokenKey`: UUID format key for refresh token signing
    - `JWT_Issuer` & `JWT_Audience`: Token identification (typically "questionmark")
